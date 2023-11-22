@@ -34,7 +34,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         # Match Development Node Version
-        node-version: '18.x'
+        node-version: '20.x'
 
     # Tool Versions
     - name: Node Version
@@ -64,17 +64,17 @@ jobs:
         path: dist/
 
     ## end to end tests
-    - name: Install Playwright Browsers
-      if: inputs.test
-      run: npm run playwright-install
+    # - name: Install Playwright Browsers
+    #   if: inputs.test
+    #   run: npm run playwright-install
 
-    - name: Run Playwright tests
-      if: inputs.test
-      run: npm run playwright-test
+    # - name: Run Playwright tests
+    #   if: inputs.test
+    #   run: npm run playwright-test
 
-    - uses: actions/upload-artifact@v3
-      if: inputs.test
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+    # - uses: actions/upload-artifact@v3
+    #   if: inputs.test
+    #   with:
+    #     name: playwright-report
+    #     path: playwright-report/
+    #     retention-days: 30

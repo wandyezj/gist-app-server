@@ -7,6 +7,7 @@ const path = require("path");
 module.exports = async (env, options) => {
     const isDevelopment = options.mode === "development";
     const config = {
+        target: "node",
         // no source maps for production
         devtool: isDevelopment ? "inline-source-map" : undefined,
         devServer: {
@@ -17,7 +18,7 @@ module.exports = async (env, options) => {
         entry: ["./src/index.ts"],
         output: {
             // Add contenthash to cache bust on CDN
-            filename: isDevelopment ? "bundle.js" : "bundle-[contenthash].js",
+            filename: "[name].js",
             path: path.resolve(__dirname, "..", "dist"),
         },
         resolve: {
@@ -41,15 +42,8 @@ module.exports = async (env, options) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new HtmlWebpackPlugin({
-                template: "src/index.html",
-            }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {
-                        to: "index.css",
-                        from: "./src/index.css",
-                    },
                     {
                         to: "robots.txt",
                         from: "./src/robots.txt",

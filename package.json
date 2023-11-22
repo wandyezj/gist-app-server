@@ -12,15 +12,11 @@
         "clean": "node ./scripts/clean.js dist",
         "compile": "webpack --config ./config/webpack.config.js --mode production",
         "server": "npm run start",
-        "start": "webpack serve --config ./config/webpack.config.js --mode development",
+        "start": "node dist/main.js ",
         "style": "prettier --config ./config/prettier.json  --write \"@(src|Tests|scripts)/**/*.@(ts|js|md|html|css|json)\"",
         "style-check": "prettier --config ./config/prettier.json  --check \"@(src|tests|scripts)/**/*.@(ts|js|md|html|css|json)\"",
         "lint": "eslint --config ./config/eslint.json --no-eslintrc \"@(src|tests|scripts)/**/*.@(ts|js)\"",
-        "lint-fix": "eslint --config ./config/eslint.json --no-eslintrc --fix \"@(src|tests|scripts)/**/*.@(ts|js)\"",
-        "test": "npm run compile && npm run playwright-test",
-        "playwright-install": "playwright install --with-deps chromium",
-        "playwright-test": "playwright test --config ./config/playwright.config.ts",
-        "playwright-report": "playwright show-report"
+        "lint-fix": "eslint --config ./config/eslint.json --no-eslintrc --fix \"@(src|tests|scripts)/**/*.@(ts|js)\""
     },
     "repository": {
         "type": "git",
@@ -36,7 +32,6 @@
     "devDependencies": {
         "@playwright/test": "^1.32.3",
         "@types/node": "^18.7.17",
-        "playwright": "^1.33.0",
         "@typescript-eslint/eslint-plugin": "^5.52.0",
         "@typescript-eslint/parser": "^5.52.0",
         "eslint": "^8.34.0",
