@@ -59,7 +59,7 @@ jobs:
 
     - name: Zip artifact for deployment
       if: inputs.upload
-      run: zip release.zip ./dist/* -r
+      run: cd dist; zip -r ../release.zip *
 
     - name: Upload artifact for deployment job
       if: inputs.upload
