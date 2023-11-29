@@ -28,7 +28,7 @@ jobs:
     steps:
 
     # Setup
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
   
     - name: Use Node.js
       uses: actions/setup-node@v3
@@ -57,11 +57,22 @@ jobs:
     - name: compile
       run: npm run compile
 
-    - name: Upload static files as artifact
+    - name: Zip artifact for deployment
       if: inputs.upload
-      uses: actions/upload-pages-artifact@v1
+      run: zip release.zip ./dist/* -r
+
+    - name: Upload artifact for deployment job
+      if: inputs.upload
+      uses: actions/upload-artifact@v3
       with:
-        path: dist/
+        name: node-app
+        path: release.zip
+
+    # - name: Upload static files as artifact
+    #   if: inputs.upload
+    #   uses: actions/upload-pages-artifact@v1
+    #   with:
+    #     path: dist/
 
     ## end to end tests
     # - name: Install Playwright Browsers
