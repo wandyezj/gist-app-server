@@ -18,7 +18,7 @@ module.exports = async (env, options) => {
         entry: ["./src/index.ts"],
         output: {
             // Add contenthash to cache bust on CDN
-            filename: "[name].js",
+            filename: "index.js",
             path: path.resolve(__dirname, "..", "dist"),
         },
         resolve: {
